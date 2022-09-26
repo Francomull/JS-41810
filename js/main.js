@@ -6,9 +6,7 @@ let nota4 = parseInt(prompt('Ingrese la ultima nota'))
 let promedio = (nota1 + nota2 + nota3 + nota4) / 4; 
 
 if (promedio >= 60){
-    alert ("El alumno esta aprobo")
+    alert ("El alumno esta aprobó")
 }else{
-    alert ("EL alumno reprobo")
+    alert ("EL alumno reprobó")
 }
-
-
