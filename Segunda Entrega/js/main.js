@@ -30,7 +30,6 @@ const libros = [
     new Libro('El Hobbit', 'J.R.R. Tolkien', 1937, 'Novela fantástica', 10, 7)
 ]
 
-console.log(libros);
 
 
 let continuar = true;
