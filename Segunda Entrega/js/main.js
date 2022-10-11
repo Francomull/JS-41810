@@ -1,103 +1,155 @@
-class Libro {
+class HPpelis {
+    constructor(titulo, anio, curso, director, id) {
 
-    constructor(titulo, autor, anio, genero, valoracion, id) {
         this.titulo = titulo;
-        this.autor = autor;
         this.anio = parseInt(anio);
-        this.genero = genero;
-        this.valoracion = parseInt(valoracion);
+        this.curso = curso;
+        this.director = director;
         this.id = id;
     }
 
-    asignarId(array) {
+    agregarId(array) {
         this.id = array.length;
     }
 
-    valorar(valoracion) {
-        this.valoracion = valoracion;
-    }
+};
 
 
-}
 
-const libros = [
-    new Libro('American Gods', 'Neil Gaiman', 2001, 'Fantasía', 6, 1),
-    new Libro('Némesis', 'Agatha Christie', 1971, 'Misterio', 8, 2),
-    new Libro('Los elefantes pueden recordar', 'Agatha Christie', 1972, 'Misterio', 7, 3),
-    new Libro('David Copperfield', 'Charles Dickens', 1950, 'Novela', 8, 4),
-    new Libro('Narciso y Golmundo', 'Hermann Hesse', 1930, 'Novela', 9, 5),
-    new Libro('Los Borgia', 'Mario Puzo', 2001, 'Novela histórica', 9, 6),
-    new Libro('El Hobbit', 'J.R.R. Tolkien', 1937, 'Novela fantástica', 10, 7)
-]
+const videoJuegos = [
 
+    new HPpelis('Harry Potter y la piedra filosofal ', 2001, '1 Curso', 'Chris Columbus', 1),
+    new HPpelis('Harry Potter y la camara secreta', 2002, '2 Curso', 'Chris Columbus', 2),
+    new HPpelis('Harry Potter y el prisionero de Azkaban', 2004, '3 Curso', 'Alfonso Cuaron', 3),
+    new HPpelis('Harry Potter y el caliz de fuego', 2005, '4 Curso', 'Mike Newell', 4),
+    new HPpelis('Harry Potter y la Orden del Fenix', 2007, '5 Curso', ' David Yates', 5),
+    new HPpelis('Harry Potter y el misterio del principe', 2009, '6 Curso', 'David Yates', 6),
+    new HPpelis('Harry Potter y las reliquias de la muerte - Parte 1', 2010, 'Ultimo Curso', 'David Yates', 7),
+    new HPpelis('Harry Potter y las reliquias de la muerte - Parte 2', 2011, 'Ultimo Curso', 'David Yates', 8),
+
+];
 
 
 let continuar = true;
 
 while (continuar) {
-    let ingreso = prompt('Ingresa los datos del libro: titulo, autor, año, género, puntaje de 1 a 10, separados por una barra diagonal (/). Ingresa X para finalizar');
 
-    if (ingreso.toUpperCase() == 'X') {
+
+    let opcion = parseInt(prompt('Te gusta Harry Potter? Estas en el lugar indicado \n Ingresa: \n 1-Agregar una Pelicula \n 2-Buscarlas por titulos \n 3-Ordenarlas por año \n 4-Ordernarlas por titulo \n 5-Buscar por genero \n 9-Salir '));
+
+    if (opcion == 9) {
         continuar = false;
-        break;
+        break
+
     }
 
-    let datos = ingreso.split('/');
-    const libro = new Libro(datos[0], datos[1], datos[2], datos[3], datos[4]);
-
-    libros.push(libro);
-
-    libro.asignarId(libros);
-
-    console.log(libros)
-} 
-
-let criterio = prompt('Elegí el criterio deseado:\n1 - Título (A a Z) \n2 - Título (Z a A)\n3 - Mejor a peor puntuado \n4 - Fecha de publicación (Más viejo a más nuevo)');
-
-function ordenar(criterio, array) {
-    let arrayOrdenado = array.slice(0);
 
 
-    switch (criterio) {
-        case '1':
-            let nombreAscendente = arrayOrdenado.sort((a,b)=>a.titulo.localeCompare(b.titulo));
-            return nombreAscendente;
-        case '2':
-            let nombreDescendente = arrayOrdenado.sort((a, b) => b.titulo.localeCompare(a.titulo));
-            return nombreDescendente;
-        case '3':
-            return arrayOrdenado.sort((a, b) => b.valoracion - a.valoracion);
-        case '4':
-            return arrayOrdenado.sort((a, b) => a.anio - b.anio);
-        default:
-            alert('No es un criterio válido');
+    switch (opcion) {
+
+ 
+        case 1: {
+            let nuevoVideoJuego = prompt('Ingrese el titulo, año, genero, desarrollador separados por un # ')
+
+            let info = nuevoVideoJuego.split('#');
+            console.log(info);
+
+            let juegoNuevo = new VideoJuego(info[0], info[1], info[2], info[3]);
+            videoJuegos.push(juegoNuevo);
+            juegoNuevo.agregarId(videoJuegos);
+
             break;
+
+
+        }
+
+        case 2: {
+
+            let juegoBuscado = prompt('Ingrese el nombre del juego');
+
+            let filtro = videoJuegos.filter((videoJuego) => videoJuego.titulo.toUpperCase().includes(juegoBuscado.toUpperCase()));
+
+            if (filtro.length == 0) {
+                alert('El juego no se encuentra disponible');
+            } else {
+                let juegoEncontrado = filtro.map((filtro) => filtro.titulo);
+
+                alert(`El juego ${juegoEncontrado} se encuentra en la lista`);
+
+
+            }
+
+            break;
+        }
+
+
+        case 3: {
+
+            let copiaArray = videoJuegos.slice();
+
+            let opcion = parseInt(prompt('Ingrese \n 1 De mas nuevo a mas a viejo \n  2 De mas viejo a mas nuevo'));
+
+            if (opcion == 1) {
+                let deMasNuevoAMasViejo = copiaArray.sort((a, b) => a.anio - b.anio);
+                alert((deMasNuevoAMasViejo.map((deMasNuevoAMasViejo) => deMasNuevoAMasViejo.titulo + ' : ' + deMasNuevoAMasViejo.anio)).join('\n'));
+
+            } else if (opcion == 2) {
+                let deMasViejoAMasNuevo = copiaArray.sort((a, b) => b.anio - a.anio);
+                alert((deMasViejoAMasNuevo.map((deMasViejoAMasNuevo) => deMasViejoAMasNuevo.titulo + ' : ' + deMasViejoAMasNuevo.anio)).join('\n'));
+
+            } else {
+                alert('Usted a ingresado una opcion no valida');
+            }
+
+            break;
+
+        }
+
+
+        case 4: {
+            let copiaArray = videoJuegos.slice();
+            let ordenarPorTitulo = parseInt(prompt('Ingrese \n 1 Si quiere ordenar de A a Z \n 2 Si quiere ordenar de Z a A'));
+
+
+            if (ordenarPorTitulo == 1) {
+                let ordenadoDeAaZ = copiaArray.sort((a, b) => a.titulo.localeCompare(b.titulo));
+
+                alert((ordenadoDeAaZ.map((ordenadoDeAaZ) => ordenadoDeAaZ.titulo)).join('\n'));
+
+            } else if (ordenarPorTitulo == 2) {
+                let ordenadoDeZaA = copiaArray.sort((a, b) => b.titulo.localeCompare(a.titulo));
+                alert((ordenadoDeZaA.map((ordenadoDeZaA) => ordenadoDeZaA.titulo)).join('\n'));
+
+
+
+            } else {
+                alert('Usted a ingresado una opcion no valida')
+            }
+
+
+            break;
+
+        }
+
+
+        case 5: {
+            let cursoBuscado = prompt('Ingrese del genero');
+
+            let filtro = videoJuegos.filter((videoJuego) => videoJuego.curso.toUpperCase().includes(cursoBuscado.toUpperCase()));
+
+            console.log(filtro);
+
+            if (filtro.length == 0) {
+                alert('Ese genero no se encuentra disponible');
+            } else{
+                
+                let cursoEncontrado = filtro.map((cursoEncontrado) => cursoEncontrado.titulo )
+
+                alert(`Estos son los Juegos encontados :\n${cursoEncontrado.join('\n')}`);
+
+            }
+            break;
+        }
     }
+
 }
-
-
-function crearStringResultado(array){
-    let info = '';
-
-    array.forEach(elemento=>{
-        info += 'Título: ' + elemento.titulo + '\nAutor: ' + elemento.autor + '\nAño de publicación: ' + elemento.anio + '\nValoración: ' + elemento.valoracion + ' puntos.\n\n'
-    })
-
-    return info;
-}
-
-
-alert(crearStringResultado(ordenar(criterio,libros)));
-
-
-let autorElegido = prompt('Escribí el nombre del autor para que te mostremos sus libros');
-
-const filtrado = libros.filter((libro)=>libro.autor.toLowerCase().includes(autorElegido.toLowerCase()))
-
-
-if (filtrado.length==0){
-    alert('Lo sentimos. No encontramos coincidencias en nuestro catálogo');
-}else{
-    const imprimible = filtrado.map((libro)=>libro.titulo);
-    alert('Loslibros de nuestro catálogo, de autores que coinciden parcial o totalmente con esta búsqueda, son:\n- ' + imprimible.join('\n- '));
-}                   
