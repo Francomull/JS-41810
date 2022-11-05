@@ -1,7 +1,4 @@
 
-
-
-
 header{
     display: flex;
     justify-content: space-around;
@@ -77,13 +74,13 @@ main{
     border-radius: 10px;
 }
 
-button{
+.btnComprar{
     border-radius: 5px;
     border-style: none;
     margin-bottom: 10px;
 }
 
-button:hover{
+.btnComprar:hover{
     border-style: solid;
     background-color: #045c5cc9;
 }
