@@ -26,6 +26,10 @@ productos.forEach((product) =>{
 
     content.append(comprar);
     comprar.addEventListener("click", ()=>{
+
+        
+        sessionStorage.setItem( 'compra', JSON.stringify(productos))
+
         carrito.push({
             id: product.class,
             img: product.img,
@@ -37,6 +41,11 @@ productos.forEach((product) =>{
 
 
 verCarrito.addEventListener("click", ()=>{
+
+    sessionStorage.setItem('productos', productos)
+    let mostrarCompra = localStorage.setItem ("compras", JSON.stringify(productos))
+        console.log(mostrarCompra);
+
     divCarrito.innerHTML = "";
     divCarrito.style.display = "grid"
     const carritoContent = document.createElement("div");
@@ -52,6 +61,9 @@ verCarrito.addEventListener("click", ()=>{
     carritoButton.className = "btnCarrito"
 
     carritoButton.addEventListener('click', ()=>{
+
+        sessionStorage.clear();
+        
         divCarrito.style.display = "none"
     })
 
