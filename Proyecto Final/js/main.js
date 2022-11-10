@@ -1,15 +1,24 @@
 
+// Constantes
 const masterDiv1 = document.getElementById("masterDiv")
 const verCarrito = document.getElementById("verCarrito")
 const divCarrito = document.getElementById("divCarrito")
 
 
-
+// Variables 
 let carrito = [];
 
 
 
-productos.forEach((product) =>{
+// Fetch
+
+fetch('../js/productos.json')
+    .then( (res) => res.json()) 
+    .then((data)=> {
+
+        // Contenido de la página 
+
+data.forEach((product) =>{
     let content = document.createElement("div");
     content.className = "productos"
     content.innerHTML = `
@@ -22,7 +31,7 @@ productos.forEach((product) =>{
 
     let comprar = document.createElement ("button");
     comprar.innerText = "Añadir al Carrito";
-    comprar.className = "btnComprar"
+    comprar.className = "btnComprar";
 
     content.append(comprar);
     comprar.addEventListener("click", ()=>{
@@ -40,6 +49,13 @@ productos.forEach((product) =>{
 })
 
 
+
+    } )
+
+
+
+// Contenido del carrito 
+
 verCarrito.addEventListener("click", ()=>{
 
     sessionStorage.setItem('productos', productos)
@@ -55,12 +71,16 @@ verCarrito.addEventListener("click", ()=>{
     `
     divCarrito.append(carritoContent);
 
+
+// Boton para cerrar el Carrito
     const carritoButton = document.createElement("button")
     carritoButton.innerText = "Cerrar"
 
     carritoButton.className = "btnCarrito"
 
     carritoButton.addEventListener('click', ()=>{
+
+        alert ('tu pago fue procesado con éxito')
 
         sessionStorage.clear();
         
