@@ -4,27 +4,26 @@ const masterDiv1 = document.getElementById("masterDiv")
 const verCarrito = document.getElementById("verCarrito")
 const divCarrito = document.getElementById("divCarrito")
 
-
 // Variables 
 let carrito = [];
 
-
-
 // Fetch
 
-fetch('../js/productos.json')
+fetch('../json/productos.json')
     .then( (res) => res.json()) 
-    .then((data)=> {
+    .then((info)=> {
 
-        // Contenido de la página 
+// Contenido de la página 
 
-data.forEach((product) =>{
+info.forEach((productos) =>{
     let content = document.createElement("div");
     content.className = "productos"
     content.innerHTML = `
-    <img src="${product.img}">
-    <h3>${product.nombre} </h3>
-    <p>${product.precio} $</p>
+    <img src="${productos.img}">
+    <h3>${productos.nombre} </h3>
+    <p>${productos.precio} $</p>
+
+    
     `
 
     masterDiv1.append(content);
@@ -33,42 +32,39 @@ data.forEach((product) =>{
     comprar.innerText = "Añadir al Carrito";
     comprar.className = "btnComprar";
 
+
+    //BOTON PARA AÑADIR AL CARRITO 
     content.append(comprar);
     comprar.addEventListener("click", ()=>{
 
-        
         sessionStorage.setItem( 'compra', JSON.stringify(productos))
-
+  
         carrito.push({
-            id: product.class,
-            img: product.img,
-            nombre: product.nombre,
-            precio: product.precio
+            id: productos.class,
+            img: productos.img,
+            nombre: productos.nombre,
+            precio: productos.precio
         })
     })
 })
 
-
-
-    } )
-
+} )
 
 
 // Contenido del carrito 
 
 verCarrito.addEventListener("click", ()=>{
 
-    sessionStorage.setItem('productos', productos)
-    let mostrarCompra = localStorage.setItem ("compras", JSON.stringify(productos))
-        console.log(mostrarCompra);
-
     divCarrito.innerHTML = "";
     divCarrito.style.display = "grid"
+    
     const carritoContent = document.createElement("div");
     carritoContent.className = "carritoTodo"
     carritoContent.innerHTML = `
     <h1> ¿Listo para finalizar tu compra? </h1>
     `
+
+
     divCarrito.append(carritoContent);
 
 
@@ -89,14 +85,14 @@ verCarrito.addEventListener("click", ()=>{
 
     carritoContent.append(carritoButton);
 
-    carrito.forEach((product) =>{
+    carrito.forEach((productos) =>{
 
         let carritoTodo = document.createElement("div")
         carritoTodo.calssName = "carritoTodo"
         carritoTodo.innerHTML = `
-        <img src= "${product.img}">
-        <h3> "${product.nombre} "</h3>
-        <p> "${product.precio} " </p>
+        <img src= "${productos.img}">
+        <h3> "${productos.nombre} "</h3>
+        <p> "${productos.precio} " </p>
         `;
 
         divCarrito.append(carritoTodo)
@@ -111,8 +107,3 @@ verCarrito.addEventListener("click", ()=>{
 
     divCarrito.append(total2)
 })
-
-
-
-
-
