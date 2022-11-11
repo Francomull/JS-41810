@@ -76,10 +76,6 @@ verCarrito.addEventListener("click", ()=>{
 
     carritoButton.addEventListener('click', ()=>{
 
-        alert ('tu pago fue procesado con éxito')
-
-        sessionStorage.clear();
-        
         divCarrito.style.display = "none"
     })
 
@@ -106,4 +102,30 @@ verCarrito.addEventListener("click", ()=>{
     total2.innerHTML = `Este es su total a pagar: $ ${total}`
 
     divCarrito.append(total2)
+
+    const btnFin = document.createElement("button")
+    btnFin.innerText = "Finalizar compra"
+
+    btnFin.className = "btnFin"
+
+    btnFin.addEventListener('click', ()=>{
+
+        Swal.fire(
+            'Tu compra fue realizada con éxito!',
+            'Que la disfrtes!',
+            'success'
+          )
+
+        sessionStorage.clear();
+        
+        divCarrito.style.display = "none"
+
+        carrito = {}
+        divCarrito()
+
+    })
+
+    carritoContent.append(btnFin);
+
+
 })

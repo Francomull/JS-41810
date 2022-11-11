@@ -5,13 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Link al css propio-->
+    <!-- Link CSS propio-->
     <link rel="stylesheet" href="styles/main.css">
 
-    <!-- Link Bootstrap -->
+    <!-- Link CSS Bootstrap -->
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <!-- Link CSS Sweetalert -->
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
 
     <title> Dha Leon </title>
 </head>
@@ -34,7 +38,11 @@
         </nav>
 
         <div class="divnav">
-            <button id="verCarrito">🛒</button>
+
+            <a href="#divCarrito">
+                <button id="verCarrito" class="btnCarrito1" >🛒</button> 
+            </a>
+
         </div>
 
 
@@ -53,14 +61,21 @@
     </main>
 
     <footer>
-
+        <p>Todos los derechos reservados</p>
+        <p> Seguinos en nuestras redes </p>
+        <p> Trabaja con nosotros </p>
     </footer>
 
+
+    <!-- Link al JS propio -->
     <script src="js/main.js"></script>    
 
     <!-- Link JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+    <!-- Link JS Sweetalert -->
+    <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
 </body>
 

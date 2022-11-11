@@ -84,3 +84,19 @@ main{
     border-style: solid;
     background-color: #045c5cc9;
 }
+
+.divCarrito {
+    display: flex;
+    align-items: center;
+}
+
+.carritoTodo {
+    align-items: center;
+}
+
+footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
